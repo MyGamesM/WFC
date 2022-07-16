@@ -1,39 +1,42 @@
 class Tile():
 	def __init__(self, value: int) -> None:
-		#if type(x) is not int:
-#			raise ValueError(f"x is {type(x)} not int")
-#		if type(y) is not int:
-#			raise ValueError(f"y is {type(y)} not int")
-#		if type(value) is not int:
-#			raise ValueError(f"value is {type(value)} not int")
-#	
-#		self.x = x
-#		self.y = y
 		self.value = value
+		self.rules = []
+		self.entropy = 0
+		self.dirs = []
+		self.collapsed = False
 		
-	#def get_coords(self) -> tuple:
-#		return self.x, self.y
-#		
-#	def set_coords(self, x: int, y: int):
-#		if type(x) is not int:
-#			raise ValueError(f"x is {type(x)} not int")
-#		if type(y) is not int:
-#			raise ValueError(f"y is {type(y)} not int")
-#			
-#		self.x = x
-#		self.y = y
-		
-	def get_value(self):
+	def get_value(self) -> int:
 		return self.value
 		
-	def set_value(self, val: int):
+	def set_value(self, val: int) -> None:
 		if type(val) is not int:
 			raise ValueError(f"val is {type(x)} not int")
-			
+		if val != -1:
+			self.collapsed = True
+				
 		self.value = val
 		
-if __name__ == "__main__":
-	t = Tile(0)
-	print(t.get_value())
-	t.set_value(1)
-	print(t.get_value())
+	def add_rule(self, rule: tuple) -> None:
+		self.rules.append(rule)
+		
+	def get_rules(self) -> list:
+		return self.rules
+		
+	def set_entrpy(self, e: tuple) -> None:
+		self.entropy = e
+		
+	def get_entropy(self) -> int:
+		return self.entropy
+		
+	def add_dir(self, dir: tuple) -> None: # maybe extend only
+		self.dirs.append(dir)
+		
+	def get_dirs(self) -> list:
+		return self.dirs
+		
+	def set_col(self, val: bool) -> bool:
+		self.collapsed = val
+		
+	def get_col(self) -> bool:
+		return self.collapsed
